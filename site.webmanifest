@@ -1,0 +1,22 @@
+{
+  "name": "Jardinly Live",
+  "short_name": "Jardinly",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#22351D",
+  "theme_color": "#22351D",
+  "description": "Real-time AI plant care. Point the camera. It answers out loud.",
+  "icons": [
+    {
+      "src": "/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

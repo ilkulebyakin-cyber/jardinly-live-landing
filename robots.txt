@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jardinly.live/sitemap.xml
