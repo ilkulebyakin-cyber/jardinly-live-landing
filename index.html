@@ -925,17 +925,21 @@ langBtn.addEventListener('click',()=>langModal.style.display='block');
 closeModal.addEventListener('click',()=>langModal.style.display='none');
 langModal.addEventListener('click',()=>langModal.style.display='none');
 
-// Update button text to show current language
-const langMap={
-  '':'EN','es':'ES','de':'DE','fr':'FR','pt':'PT','it':'IT','nl':'NL','pl':'PL','tr':'TR',
-  'ru':'RU','ja':'JA','ko':'KO','zh':'ZH','ar':'AR','hi':'HI','id':'ID',
-  'bn':'BN','sw':'SW','vi':'VI','tl':'TL','th':'TH','ha':'HA','am':'AM','te':'TE','ta':'TA','kn':'KN'
-};
-const path=window.location.pathname;
-const lang=path.split('/').filter(s=>s)[0]||'';
-const code=langMap[lang]||'EN';
-const btnText=langBtn.childNodes[2];
-if(btnText&&btnText.nodeType===3) btnText.textContent=code;
+// Label the language button from the page's own <html lang>, not from the URL:
+// the root path serves several languages and middleware.js picks which one.
+// The label is found by scanning for a text node rather than by child index,
+// so adding or reordering the icons inside the button cannot break it.
+(function(){
+  const btn=document.getElementById('langBtn');
+  if(!btn) return;
+  const code=(document.documentElement.lang||'en').split('-')[0].toUpperCase();
+  for(const node of btn.childNodes){
+    if(node.nodeType===3&&node.textContent.trim()){
+      node.textContent=node.textContent.replace(/\S+/,code);
+      return;
+    }
+  }
+})();
 </script>
 </body>
 </html>
