@@ -1,0 +1,212 @@
+{
+  "hosting": {
+    "public": ".",
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "README.md",
+      "DEPLOY-GCP.md",
+      "deploy-gcp.sh",
+      "vercel.json",
+      "middleware.js"
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "Referrer-Policy",
+            "value": "strict-origin-when-cross-origin"
+          },
+          {
+            "key": "X-Frame-Options",
+            "value": "SAMEORIGIN"
+          },
+          {
+            "key": "Permissions-Policy",
+            "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+          },
+          {
+            "key": "Strict-Transport-Security",
+            "value": "max-age=63072000; includeSubDomains; preload"
+          },
+          {
+            "key": "Content-Security-Policy",
+            "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'"
+          }
+        ]
+      },
+      {
+        "source": "**/*.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=0, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "/assets/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, immutable"
+          }
+        ]
+      },
+      {
+        "source": "/es/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "es"
+          }
+        ]
+      },
+      {
+        "source": "/de/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "de"
+          }
+        ]
+      },
+      {
+        "source": "/fr/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "fr"
+          }
+        ]
+      },
+      {
+        "source": "/pt/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "pt-BR"
+          }
+        ]
+      },
+      {
+        "source": "/it/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "it"
+          }
+        ]
+      },
+      {
+        "source": "/nl/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "nl"
+          }
+        ]
+      },
+      {
+        "source": "/pl/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "pl"
+          }
+        ]
+      },
+      {
+        "source": "/tr/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "tr"
+          }
+        ]
+      },
+      {
+        "source": "/ru/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "ru"
+          }
+        ]
+      },
+      {
+        "source": "/ja/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "ja"
+          }
+        ]
+      },
+      {
+        "source": "/ko/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "ko"
+          }
+        ]
+      },
+      {
+        "source": "/zh/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "zh-Hans"
+          }
+        ]
+      },
+      {
+        "source": "/ar/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "ar"
+          }
+        ]
+      },
+      {
+        "source": "/hi/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "hi"
+          }
+        ]
+      },
+      {
+        "source": "/id/**",
+        "headers": [
+          {
+            "key": "Content-Language",
+            "value": "id"
+          }
+        ]
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/app",
+        "destination": "https://app.jardinly.live",
+        "type": 302
+      },
+      {
+        "source": "/pitch",
+        "destination": "https://www.youtube.com/watch?v=GP3SxLxpGQQ",
+        "type": 302
+      }
+    ]
+  }
+}
