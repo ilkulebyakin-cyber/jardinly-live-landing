@@ -1,0 +1,11 @@
+# There is no build step: this repository is the deploy folder, and
+# `vercel deploy` ships it byte for byte. Every page is CRLF throughout.
+#
+# Without this, a clone with core.autocrlf=true stores the pages
+# LF-normalised - index.html is 119137 bytes as deployed and lands in the
+# object store as 118192, exactly 945 bytes short, one per line. The clone
+# then holds files that are not what is live, and any byte-comparison against
+# the live site reports a mismatch that is not real.
+#
+# No end-of-line conversion, in either direction. What is committed is what ships.
+* -text
