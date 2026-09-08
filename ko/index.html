@@ -760,19 +760,20 @@ a:hover{color:#DFF9E1}
 <div data-closer="" style="max-width:660px;margin:0 auto;text-align:center;position:relative">
 
 <h2 style="font:600 62px/1 Outfit,sans-serif;letter-spacing:-2.8px;color:#FFFFFF;margin:0 0 16px">한 그루부터 시작하세요.</h2>
-<p style="font:300 18px/1.6 Outfit,sans-serif;color:rgba(255,255,255,.74);margin:0 0 34px">새 소식이 있을 때만 보냅니다. 그 외에는 보내지 않습니다.</p>
+<p style="font:300 18px/1.6 Outfit,sans-serif;color:rgba(255,255,255,.74);margin:0 0 34px">베타에 등록하세요. 무언가 바뀌었을 때만 알려드립니다.</p>
 <div data-jl="subDone" style="display:none">
 <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 0">
 <div style="width:52px;height:52px;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center"><svg width="26" height="26" style="color:#2AA136"><use href="#l-check"></use></svg></div>
-<div style="font:600 19px Outfit,sans-serif;color:#FFFFFF">신청되었습니다.</div>
-<div style="font:400 14.5px Outfit,sans-serif;color:rgba(255,255,255,.65)">전할 만한 소식이 생기면 연락드리겠습니다.</div>
+<div style="font:600 19px Outfit,sans-serif;color:#FFFFFF">베타 목록에 등록되었습니다.</div>
+<div style="font:400 14.5px Outfit,sans-serif;color:rgba(255,255,255,.65)">새로 시험해볼 것이 생기면 알려드리겠습니다.</div>
 </div>
 </div>
 <div data-jl="subForm">
 <div style="display:flex;gap:10px;max-width:470px;margin:0 auto">
-<input type="email" placeholder="your@email.com"   style="flex:1;height:54px;padding:0 22px;border-radius:999px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);color:#FFFFFF;font:400 15px Outfit,sans-serif;outline:none">
-<button data-jl="subBtn" style="height:54px;padding:0 28px;border-radius:999px;background:#FFFFFF;color:#16240F;font:600 15px Outfit,sans-serif;border:none;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.28)">알림 받기</button>
+<input type="email" placeholder="your@email.com"   style="flex:1;height:54px;padding:0 22px;border-radius:999px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);color:#FFFFFF;font:400 15px Outfit,sans-serif;outline:none"><input data-jl="subHp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none">
+<button data-jl="subBtn" style="height:54px;padding:0 28px;border-radius:999px;background:#FFFFFF;color:#16240F;font:600 15px Outfit,sans-serif;border:none;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.28)">베타 등록</button>
 </div>
+<div data-jl="subErr" role="alert" style="display:none;font:400 13.5px Outfit,sans-serif;color:#FFD46B;margin-top:13px">지금은 등록하지 못했습니다. 다시 시도해 주세요.</div><div style="font:400 12.5px Outfit,sans-serif;color:rgba(255,255,255,.5);margin-top:13px">베타 소식에만 사용합니다. 언제든 수신을 해지할 수 있습니다.</div>
 </div>
 </div>
 </section>
@@ -826,8 +827,8 @@ if(yBtn){yBtn.style.background=y?"#FFFFFF":"transparent";yBtn.style.color=y?"#16
 if(mBtn)mBtn.addEventListener("click",function(){bill(false);});
 if(yBtn)yBtn.addEventListener("click",function(){bill(true);});
 [mBtn,yBtn].forEach(function(b){if(b)b.style.cursor="pointer";});
-var form=q("subForm"),done=q("subDone"),btn=q("subBtn"),input=document.querySelector('input');
-function subscribe(){if(!input||!input.value.trim())return;if(form)form.style.display="none";if(done)done.style.display="";}
+var form=q("subForm"),done=q("subDone"),btn=q("subBtn"),err=q("subErr"),hp=q("subHp"),input=document.querySelector('input[type=email]'),busy=false;
+function subscribe(){if(busy||!input||!input.value.trim())return;busy=true;if(btn){btn.disabled=true;btn.style.opacity=".6";}if(err)err.style.display="none";fetch("/api/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:input.value.trim(),lang:document.documentElement.lang||"en",company:hp?hp.value:""})}).then(function(r){if(!r.ok)throw new Error(r.status);if(form)form.style.display="none";if(done)done.style.display="";}).catch(function(){if(err)err.style.display="";}).then(function(){busy=false;if(btn){btn.disabled=false;btn.style.opacity="";}});}
 if(btn){btn.style.cursor="pointer";btn.addEventListener("click",subscribe);}
 if(input)input.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();subscribe();}});
 })();

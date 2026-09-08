@@ -1,0 +1,5 @@
+# Never upload local credential files. `vercel blob create-store` drops an
+# .env.local straight into this folder, and this folder is served as a static
+# site: an uploaded .env.local would be fetchable at its own URL.
+.env*
+.vercel
