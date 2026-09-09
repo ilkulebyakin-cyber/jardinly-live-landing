@@ -67,7 +67,8 @@ index.html is generated from the deploy copy — do not hand-edit it.
 The previous (bundled) landing is kept outside dist at archive/index-2026-08-14.html
 
 ## Notes
-- CTA buttons point to https://app.jardinly.live
-- The newsletter form is front-end only — wire it to a real endpoint before launch
+- CTA buttons point to https://app2.jardinly.live
+- The beta signup form posts to api/subscribe.js, which stores each address as
+  a private object in Vercel Blob
 - Privacy and Terms are drafts — have counsel review
 - CSP allows inline styles/scripts (the page is inline-styled); tighten with hashes if you need a stricter policy
